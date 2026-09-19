@@ -85,3 +85,12 @@ def test_vx300_exact_maximum():
 
     assert result["coefficient"] == pytest.approx(2.12)
     assert result["method"] == "exact"
+
+def test_reference_case_vx100_50():
+    result = select_coefficient("VX-100", 50)
+
+    assert result["coefficient"] == pytest.approx(0.96)
+    assert result["method"] == "interpolation"
+    assert result["lower_point"] == (40, 0.93)
+    assert result["upper_point"] == (60, 0.99)
+    assert result["supported_range"] == (20, 100)
